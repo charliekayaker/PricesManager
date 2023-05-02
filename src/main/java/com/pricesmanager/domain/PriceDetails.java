@@ -1,9 +1,15 @@
 package com.pricesmanager.domain;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
+import java.sql.Date;
+
+@Builder
 @Getter
-@Setter
 public class PriceDetails {
+
+    private String brandId;
+    private String productId;
+    private Date applicationDate;
 }

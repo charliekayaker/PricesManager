@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestConstructor;
 import org.springframework.util.Assert;
 
+import java.util.Optional;
+
 @SpringBootTest
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 public class PricesUseCaseTest {
@@ -21,10 +23,16 @@ public class PricesUseCaseTest {
     @Test
     public void getPrice(){
 
-        PriceDetails pricesDetails = new PriceDetails();
+        PriceDetails pricesDetails = PriceDetails
+                .builder().build();
 
-        Price price = pricesInputPort.getPrice(pricesDetails);
 
+        Optional<Price> optionalPrice = pricesInputPort.getPrice(pricesDetails);
+
+        Price price  = optionalPrice.orElse(null);
+
+
+        Assert.isTrue(price != null, "No se encontró el precio en la base");
         Assert.isTrue(price.getValue() == 34.50, "El precio no coincide con lo esperado");
     }
 

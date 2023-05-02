@@ -2,12 +2,17 @@ package com.pricesmanager.domain;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+
+import java.util.Date;
 
 @Builder
 @Getter
-@Setter
 public class Price {
 
+    private Date startDate;
+    private Date endDate;
+    private int productId;
     private double value;
+    private int brandId;
+    private int priceList;
 }
