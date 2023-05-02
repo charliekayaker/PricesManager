@@ -1,5 +1,8 @@
 package com.pricesmanager.application;
 
+import com.pricesmanager.domain.Price;
+import com.pricesmanager.domain.PriceDetails;
+import com.pricesmanager.infra.inputport.PricesInputPort;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestConstructor;
@@ -18,7 +21,7 @@ public class PricesUseCaseTest {
     @Test
     public void getPrice(){
 
-        PricesDetails pricesDetails = new PriceDetails();
+        PriceDetails pricesDetails = new PriceDetails();
 
         Price price = pricesInputPort.getPrice(pricesDetails);
 
