@@ -6,7 +6,7 @@ Sistema de precios y tarifas según las fechas dadas.
 
 ![img.png](img.png)
 
-# Prueba en postman.
+## Prueba en postman.
 
 #### ENDPOINT
-## http://localhost:8080/pricesApi/getPrices?productId=1&brandId=2&applicationDate=2020-11-15T16:30:59.999
+#### http://localhost:8080/pricesApi/getPrices?productId=1&brandId=2&applicationDate=2020-11-15T16:30:59.999
