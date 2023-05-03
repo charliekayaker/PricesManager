@@ -5,7 +5,6 @@ import com.pricesmanager.domain.PriceDetails;
 import com.pricesmanager.infra.outputport.PriceRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.stereotype.Component;
 
 import java.sql.PreparedStatement;

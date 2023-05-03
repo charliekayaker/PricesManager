@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @SpringBootTest
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
-public class PricesUseCaseTest {
+class PricesUseCaseTest {
 
     private final PricesInputPort pricesInputPort;
 
@@ -24,7 +24,7 @@ public class PricesUseCaseTest {
     }
 
     @Test
-    public void getPrice(){
+    void getPrice(){
 
         PriceDetails pricesDetails = PriceDetails
                 .builder()
