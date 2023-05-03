@@ -8,5 +8,6 @@ class PricesManagerApplicationTest {
 
     @Test
     void contextLoads() {
+
     }
 }

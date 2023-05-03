@@ -23,7 +23,7 @@ public class RestExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
 
-        System.out.println("Validation error occurred: " + ex.getMessage());
+        log.info("Validation error occurred: " + ex.getMessage());
 
         HttpStatus status = HttpStatus.BAD_REQUEST;
 

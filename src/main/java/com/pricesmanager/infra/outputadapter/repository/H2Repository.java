@@ -2,6 +2,7 @@ package com.pricesmanager.infra.outputadapter.repository;
 
 import com.pricesmanager.domain.Price;
 import com.pricesmanager.domain.PriceDetails;
+import com.pricesmanager.domain.exception.RegisterNotFoundException;
 import com.pricesmanager.infra.outputport.PriceRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -22,7 +23,7 @@ public class H2Repository implements PriceRepository {
     }
 
     @Override
-    public Optional<Price> getPrice(PriceDetails priceDetails) {
+    public Optional<Price> getPrice(PriceDetails priceDetails) throws RegisterNotFoundException {
         RowMapper<Price> rowMapper = (rs, rowNum) -> Price.builder()
                 .productId(rs.getInt("PRODUCT_ID"))
                 .brandId(rs.getInt("BRAND_ID"))
@@ -39,6 +40,10 @@ public class H2Repository implements PriceRepository {
                     return ps;
                 },
                 rowMapper);
+
+        if(prices.get(0)==null){
+            throw new RegisterNotFoundException("No records match the conditions . . . ");
+        }
 
         return Optional.of(prices.get(0));
     }
