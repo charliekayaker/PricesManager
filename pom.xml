@@ -11,8 +11,9 @@
         <relativePath/>
     </parent>
 
-    <groupId>org.example</groupId>
+    <groupId>com.pricesmanager</groupId>
     <artifactId>PricesManager</artifactId>
+    <name>PricesManager</name>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -75,5 +76,15 @@
             <version>20210307</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>
