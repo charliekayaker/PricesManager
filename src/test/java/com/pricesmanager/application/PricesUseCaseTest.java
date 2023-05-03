@@ -8,6 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestConstructor;
 import org.springframework.util.Assert;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @SpringBootTest
@@ -24,7 +27,11 @@ public class PricesUseCaseTest {
     public void getPrice(){
 
         PriceDetails pricesDetails = PriceDetails
-                .builder().build();
+                .builder()
+                .applicationDate(LocalDateTime.of(2020, 06, 15, 16, 30, 59, 999))
+                .brandId("1")
+                .productId("35455")
+                .build();
 
 
         Optional<Price> optionalPrice = pricesInputPort.getPrice(pricesDetails);
@@ -33,7 +40,7 @@ public class PricesUseCaseTest {
 
 
         Assert.isTrue(price != null, "No se encontró el precio en la base");
-        Assert.isTrue(price.getValue() == 34.50, "El precio no coincide con lo esperado");
+        Assert.isTrue(price.getValue() == 35.50, "El precio no coincide con lo esperado");
     }
 
 }

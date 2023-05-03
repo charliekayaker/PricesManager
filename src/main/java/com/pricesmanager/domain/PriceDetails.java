@@ -2,8 +2,7 @@ package com.pricesmanager.domain;
 
 import lombok.Builder;
 import lombok.Getter;
-
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Builder
 @Getter
@@ -11,5 +10,5 @@ public class PriceDetails {
 
     private String brandId;
     private String productId;
-    private Date applicationDate;
+    private LocalDateTime applicationDate;
 }

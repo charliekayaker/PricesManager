@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.stereotype.Component;
 
 import java.sql.PreparedStatement;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,17 +27,16 @@ public class H2Repository implements PriceRepository {
         RowMapper<Price> rowMapper = (rs, rowNum) -> Price.builder()
                 .productId(rs.getInt("PRODUCT_ID"))
                 .brandId(rs.getInt("BRAND_ID"))
-                .startDate(rs.getDate("START_DATE"))
+                .startDate(rs.getTimestamp("START_DATE").toLocalDateTime())
                 .priceList(rs.getInt("PRICE_LIST"))
-                .endDate(rs.getDate("END_DATE"))
-                .value(rs.getDouble(("PRICE"))
-                )
+                .endDate(rs.getTimestamp("END_DATE").toLocalDateTime())
+                .value(rs.getDouble(("PRICE")))
                 .build();
 
         List<Price> prices = jdbcTemplate.query(
                 connection -> {
-                    PreparedStatement ps = connection.prepareStatement("SELECT * FROM PRICE WHERE START_DATE = ?");
-                    ps.setDate(1, new java.sql.Date(priceDetails.getApplicationDate().getTime()));
+                    PreparedStatement ps = connection.prepareStatement("SELECT * FROM PRICE WHERE ? BETWEEN START_DATE AND END_DATE");
+                    ps.setTimestamp(1, Timestamp.valueOf(priceDetails.getApplicationDate())) ;
                     return ps;
                 },
                 rowMapper);
