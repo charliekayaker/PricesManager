@@ -34,7 +34,7 @@ public class H2Repository implements PriceRepository {
                 .build();
 
         List<Price> prices = jdbcTemplate.query(
-                connection -> {
+                connection -> {  //Arreglar urgente. Sustituir asteriscos por los campos y agregar los otros parametros entrantes
                     PreparedStatement ps = connection.prepareStatement("SELECT * FROM PRICE WHERE ? BETWEEN START_DATE AND END_DATE");
                     ps.setTimestamp(1, Timestamp.valueOf(priceDetails.getApplicationDate())) ;
                     return ps;
