@@ -48,7 +48,7 @@ class PricesUseCaseTest {
         Price price  = optionalPrice.orElse(null);
 
         Assert.isTrue(price != null, "No se encontró el precio en la base");
-        Assertions.assertEquals(35.50, price.getValue(), "El precio no coincide con lo esperado." + price);
+        Assertions.assertEquals(35.50, price.getPrice(), "El precio no coincide con lo esperado." + price);
     }
 
     @Test
@@ -64,7 +64,7 @@ class PricesUseCaseTest {
         Price price  = optionalPrice.orElse(null);
 
         Assert.isTrue(price != null, "No se encontró el precio en la base");
-        Assertions.assertEquals(35.50, price.getValue(), "El precio no coincide con lo esperado. " + price);
+        Assertions.assertEquals(35.50, price.getPrice(), "El precio no coincide con lo esperado. " + price);
     }
 
     @Test
@@ -79,7 +79,7 @@ class PricesUseCaseTest {
 
         Price price  = optionalPrice.orElse(null);
         Assert.isTrue(price != null, "No se encontró el precio en la base");
-        Assertions.assertEquals(35.50, price.getValue(), "El precio no coincide con lo esperado. " + price);
+        Assertions.assertEquals(35.50, price.getPrice(), "El precio no coincide con lo esperado. " + price);
     }
 
     @Test
@@ -95,7 +95,7 @@ class PricesUseCaseTest {
         Price price  = optionalPrice.orElse(null);
 
         Assert.isTrue(price != null, "No se encontró el precio en la base");
-        Assertions.assertEquals(35.50, price.getValue(), "El precio no coincide con lo esperado. " + price);
+        Assertions.assertEquals(35.50, price.getPrice(), "El precio no coincide con lo esperado. " + price);
     }
 
     @Test
@@ -111,7 +111,7 @@ class PricesUseCaseTest {
         Price price  = optionalPrice.orElse(null);
 
         Assert.isTrue(price != null, "No se encontró el precio en la base");
-        Assertions.assertEquals(35.50, price.getValue(), "El precio no coincide con lo esperado. " + price);
+        Assertions.assertEquals(35.50, price.getPrice(), "El precio no coincide con lo esperado. " + price);
     }
 
 

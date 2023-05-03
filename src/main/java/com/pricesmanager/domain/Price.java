@@ -14,7 +14,7 @@ public class Price {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private int productId;
-    private double value;
+    private double price;
     private int brandId;
     private int priceList;
 }

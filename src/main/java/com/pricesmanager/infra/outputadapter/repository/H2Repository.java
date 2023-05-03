@@ -30,12 +30,25 @@ public class H2Repository implements PriceRepository {
                 .startDate(rs.getTimestamp("START_DATE").toLocalDateTime())
                 .priceList(rs.getInt("PRICE_LIST"))
                 .endDate(rs.getTimestamp("END_DATE").toLocalDateTime())
-                .value(rs.getDouble(("PRICE")))
+                .price(rs.getDouble(("PRICE")))
                 .build();
 
+        StringBuilder sqlBuilder = new StringBuilder();
+        sqlBuilder.append("SELECT PRODUCT_ID,")
+                  .append(" BRAND_ID,")
+                  .append(" START_DATE,")
+                  .append(" PRICE_LIST,")
+                  .append(" END_DATE,")
+                  .append(" PRICE,")
+                  .append(" PRIORITY")
+                  .append(" FROM PRICE WHERE ?")
+                  .append(" BETWEEN START_DATE AND END_DATE ")
+                  .append("ORDER BY PRIORITY");
+
         List<Price> prices = jdbcTemplate.query(
-                connection -> {  //Arreglar urgente. Sustituir asteriscos por los campos y agregar los otros parametros entrantes
-                    PreparedStatement ps = connection.prepareStatement("SELECT * FROM PRICE WHERE ? BETWEEN START_DATE AND END_DATE");
+                connection -> {
+                    PreparedStatement ps =
+                            connection.prepareStatement(sqlBuilder.toString());
                     ps.setTimestamp(1, Timestamp.valueOf(priceDetails.getApplicationDate())) ;
                     return ps;
                 },
