@@ -16,6 +16,7 @@ public class RestExceptionHandler {
 
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         ErrorResponse errorResponse = new ErrorResponse("An error occurred. Please try again later.");
+        ex.printStackTrace();
 
         return new ResponseEntity<>(errorResponse, status);
     }

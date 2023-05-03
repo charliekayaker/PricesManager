@@ -7,12 +7,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Slf4j
@@ -27,9 +27,19 @@ public class PriceApi {
         this.pricesInputPort = pricesInputPort;
     }
 
-    @GetMapping(value = "getPrices", produces= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Price> getPrices(@Valid PriceDetails priceDetails){
-        log.info(tag + " Request : " + priceDetails.toString());
+    @GetMapping(value = "/getPrices", produces= MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Price> getPrices(HttpServletRequest request){
+
+        log.info(tag + " Request : " + request.getParameter("productId") + " " + request.getParameter("brandId") + " "+
+                request.getParameter("applicationDate"));
+
+
+
+        PriceDetails priceDetails = PriceDetails.builder()
+                .brandId(request.getParameter("brandId"))
+                .productId(request.getParameter("productId"))
+                .applicationDate(LocalDateTime.parse(request.getParameter("applicationDate")))
+                .build();
 
         try {
             Optional<Price> price = pricesInputPort.getPrice(priceDetails);
